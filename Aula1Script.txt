@@ -1,0 +1,77 @@
+create database loja;
+
+use loja;
+
+create table cliente(
+	id serial,
+    codigo varchar(10),
+    nome varchar(50),
+    razao_social varchar(50),
+    data_cadastro datetime,
+    cnpj varchar(20),
+    fone varchar(20),
+    cidade varchar(100),
+    estado varchar(20),
+    primary key(id)
+);
+
+create table fornecedor(
+	id serial,
+    codigo_fornecedor varchar(10),
+    nome varchar(20),
+    razao_social varchar(20),
+    telefone varchar(20),
+    primary key(id)
+);
+
+create table vendedor(
+	id serial,
+    codigo_vendedor varchar(10),
+    nome varchar(20),
+    razao_venda varchar(20),
+    telefone varchar(20),
+    n_porcvenda float(10,2),
+    primary key(id)
+);
+
+create table prodtuto (
+	id serial,
+    codigo_produto varchar(20),
+    descricao varchar(100),
+    valor float(10,2),
+    situacao varchar(1),
+    id_fornecedor int,
+    primary key(id)
+);
+
+create table venda (
+	id serial,
+    codigo_venda varchar(20),
+	id_cliente int not null,
+    id_fornecedor int not null,
+    id_vendedor int not null,
+    valor float(10,2),
+    desconto float(10,2),
+    date_venda datetime default now(),
+    primary key(id)
+);
+
+create table item_venda (
+	id serial,
+    codigo_item_venda int not null,
+    id_produto int not null,
+    valor float(10,2),
+    qtde int,
+    desconto float(10,2),
+    primary key(id)
+);
+
+insert into cliente (codigo, nome, razao_social, cnpj, fone, cidade, estado)
+values ('456','Jorde','Cafe','456874','(99) 99 9 9999-9999','Luiz Alvez','JJ'),
+('765','Kau','Leite','234234','(88) 88 8 8888-8888','Kauala','KK'),
+('579','Luan','koukou','87654','(77) 77 7 7777-7777','Kauaka','MM'),
+('777','Seven','JayJay','87905','(66) 66 6 6666-6666','Jauiu','LL'),
+('666','Soutou','Shoto','09865','(55) 55 5 5555-5555','JoJu','BB');
+
+insert into fornecedor (codigo_fornecedor, nome, razao_social, telefone)
+values ('876','Joel','JoelMalahas','(22) 2 2222-2222');

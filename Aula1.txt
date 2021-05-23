@@ -1,0 +1,21 @@
+http://dontpad.com/proway-mysql
+Segue:
+
+Tipos de acordo com a funcionalidade dos comandos.
+Os tipos da linguagem SQL são:
+
+https://pt.stackoverflow.com/questions/262867/o-que-s%C3%A3o-as-siglas-ddl-dml-dql-dtl-e-dcl
+
+________________________________________________________________________________
+Tipos de dados MYSQL
+
+http://www.w3big.com/pt/mysql/mysql-data-types.html
+
+https://elias.praciano.com/2014/01/mysql-tipos-de-dados/
+
+https://imasters.com.br/data/tipos-de-dados-do-mysql-50#:~:text=Tipos%20de%20Dados%20Suportados%20Pelo%20MySQL,-O%20MySQL%20suporta&text=S%C3%A3o%20eles%3A%20BIT%2C%20TINYINT%2C,cada%20lado%2C%20precis%C3%A3o%20e%20escala.
+________________________________________________________________________________
+
+
+
+
