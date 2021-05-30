@@ -1,0 +1,119 @@
+______________________________________________________
+select 
+	p.codigo_produto Cod,
+    p.descricao descricao,
+    p.valor,
+    p.situacao,
+    p.id_fornecedor,
+    f.id
+from produto p
+left join fornecedor f on p.id_fornecedor = f.id
+union 
+select 
+	p.codigo_produto Cod,
+    p.descricao descricao,
+    p.valor,
+    p.situacao,
+    p.id_fornecedor,
+    f.id
+from produto p
+right join fornecedor f on p.id_fornecedor = f.id;
+______________________________________________________
+select count(*) from venda;
+______________________________________________________
+select avg(valor) from item_venda;
+______________________________________________________
+select concat("R$ ",format(avg(valor), 2)) "Media de valores" from item_venda;
+______________________________________________________
+select concat("R$ ",format(sum(valor), 2)) "Media de valores" from item_venda;
+______________________________________________________
+select min(valor) "Menor valor",
+       max(valor) "Maior valor"
+from item_venda iv;
+______________________________________________________
+select 
+	p.id,
+	p.codigo_produto Cod,
+    p.descricao descricao,
+    p.valor,
+    p.situacao,
+    p.id_fornecedor
+from produto p
+where p.id in (5,3,2);-- <> diferente
+______________________________________________________
+select 
+	p.id,
+	p.codigo_produto Cod,
+    p.descricao descricao,
+    p.valor,
+    p.situacao,
+    p.id_fornecedor,
+    f.nome fornecedor,
+    concat_ws(" - ", p.id, p.codigo_produto, p.descricao ) Concat
+from produto p
+inner join fornecedor f on p.id_fornecedor = f.id
+where p.id in (2,3,5);
+______________________________________________________
+select 
+    p.id,
+    p.codigo_produto Cod,
+    p.descricao descricao,
+    p.valor,
+    p.situacao,
+    p.id_fornecedor,
+    f.nome fornecedor,
+    concat_ws(" - ", p.id, p.codigo_produto, p.descricao ) Concat
+from produto p
+inner join fornecedor f on p.id_fornecedor = f.id
+where p.id in (2,3,5);
+______________________________________________________
+select 
+	p.id,
+	p.codigo_produto Cod,
+    p.descricao descricao,
+    p.valor,
+    p.situacao,
+    p.id_fornecedor,
+    f.nome fornecedor
+from produto p
+inner join fornecedor f on p.id_fornecedor = f.id
+where p.descricao like 'r%';
+______________________________________________________
+select * from cliente c;
+______________________________________________________
+select * from venda v order by 3 asc;
+______________________________________________________
+select 
+	c.codigo,
+    c.nome
+from venda v
+inner join cliente c on v.id_vendedor = c.id;
+______________________________________________________
+select 
+	c.codigo, c.nome, count(v.id)
+from venda v
+inner join cliente c on v.id_cliente = c.id
+group by c.id, c.nome
+order by c.nome;
+______________________________________________________
+select 
+	c.codigo, c.nome, count(v.id)
+from venda v
+inner join cliente c on v.id_cliente = c.id
+group by c.id, c.nome
+having count(v.id) >= 1;
+______________________________________________________
+select * 
+from produto p
+where p.codigo_produto like '%1'
+and CHAR_LENGTH(descricao) >= 5;
+______________________________________________________
+select * 
+from produto p
+where substr(p.codigo_produto, 1 , 3) = 'B1'
+and length(descricao) >= 5;
+______________________________________________________
+select 
+	upper(descricao) 'Maiusculo', lower(descricao) 'Minusculo' ,
+	ucase(descricao) 'Maiusculo 2', lcase(descricao) 'Minusculo2'
+from produto p;
