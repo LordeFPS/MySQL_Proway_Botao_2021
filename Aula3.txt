@@ -1,0 +1,2 @@
+alter table venda 
+add column vl_comissao_venda float(10,2);

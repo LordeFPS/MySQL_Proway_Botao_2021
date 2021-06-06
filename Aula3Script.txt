@@ -1,0 +1,32 @@
+select 
+	date_format(v.date_venda,'%d/%m/%Y') data
+from venda v
+where v.date_venda between '2021-05-25' and '2021-06-01';
+______________________________________________________
+select 
+	truncate(max(v.valor),0) as maior_venda
+from venda v;
+______________________________________________________
+select 
+	last_day('2021-02-01') as ultimo_dia,
+    extract(year from '2021-02-01') ano
+from dual;
+______________________________________________________
+select extract(year from '2021-02-01');
+______________________________________________________
+select extract(month from '2021-02-01');
+______________________________________________________
+select extract(day from '2021-02-01');
+______________________________________________________
+select monthname('2021-02-01') from dual;
+______________________________________________________
+select dayname('2021-02-01') from dual;
+______________________________________________________
+select 
+	extract(year from now()) year, 
+	concat(monthname(now()),' (',month(now()),')') month, 
+	concat(dayname(now()),' (',day(now()),')') day 
+from dual;
+______________________________________________________
+http://dontpad.com/mysql-proway
+______________________________________________________
