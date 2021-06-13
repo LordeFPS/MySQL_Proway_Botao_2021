@@ -1,0 +1,78 @@
+CRIANDO VIEW in MySQL
+__________________________________________________________________
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `loja`.`cliente_venda` AS
+    SELECT 
+        `c`.`razao_social` AS `Razão Social Cliente`,
+        `c`.`nome` AS `Nome Cliente`,
+        `c`.`cnpj` AS `CNPJ Cliente`,
+        `v`.`valor` AS `Valor`,
+        `v`.`date_venda` AS `Data Venda`,
+        `c`.`codigo` AS `Codigo Cliente`
+    FROM
+        (`loja`.`cliente` `c`
+        JOIN `loja`.`venda` `v` ON (`v`.`id_cliente` = `c`.`id`))
+-------------------------------------------------------------------
+ou
+-------------------------------------------------------------------
+create or replace view cliente_venda as 
+select 
+	c.razao_social 'Razão Social Cliente',
+    c.nome 'Nome Cliente',
+    c.cnpj 'CNPJ Cliente',
+    v.valor 'Valor',
+    v.date_venda 'Data Venda',
+    c.codigo 'Codigo Cliente'
+from cliente c
+inner join venda v on v.id_cliente = c.id;
+-------------------------------------------------------------------
+Chamando View
+select * from cliente_venda;
+___________________________________________________________________
+Criando View 
+create or replace view rel_produtos_ativos as
+select 
+    p.id,
+    p.codigo_produto,
+    p.descricao,
+    p.valor,
+    (select f.nome from fornecedor f where f.id = p.id_fornecedor) as 'Fornecedor'
+from produto p
+where p.situacao = 'P';
+--------------------------------------------------------------------
+select 
+	p.id,
+    p.codigo_produto,
+    p.descricao,
+    p.valor,
+    f.nome  as 'Fornecedor'
+from produto p
+left join fornecedor f on f.id = p.id_fornecedor
+where p.situacao = 'P';
+--------------------------------------------------------------------
+Chamando view
+select * from rel_produtos_ativos;
+___________________________________________________________________
+Ver os Indices do Banco
+select 
+	table_name,
+    index_name
+from information_schema.statistics
+where table_schema = 'loja';
+___________________________________________________________________
+Criando Indices 
+alter table cliente add index idx_cliente_id(id);
+
+alter table cliente add unique index idx_cliente_cnpj(cnpj);
+
+drop index idx_cliente_cnpj on cliente;
+
+show index from cliente;
+
+
+
+
+

@@ -1,0 +1,12 @@
+Command line
+Show databases;
+create database loja;
+create user gabriel@'%' identified by 'gabriel';
+grant all privileges on *.* to gabriel@'%' with grant option;
+show grants;
+** Para executar mysqldump, criar variavel de ambiente do MySQL
+** Iniciar cmd(Prompt de Comando) -> mysql -u root -p 
+** pwd: 123456
+** verificar se entrou dps usar -> quit
+** entao executar ↓
+mysqldump -u root -p123456 loja > C:/Users/69146/Desktop/loja.sql;

@@ -1,2 +1,5 @@
 alter table venda 
 add column vl_comissao_venda float(10,2);
+
+alter table venda add constraint fk_itvenda_venda
+foreign key  (id_item_venda) references item_venda(id);
